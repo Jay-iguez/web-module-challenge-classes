@@ -66,6 +66,10 @@ class Person {
   }
 }
 
+const beel = new Person ("Beel Kreel", 1000)
+
+console.log(`Task 1`, beel)
+
 /*
   TASK 2
     - Write a Car class whose constructor initializes `model` and `milesPerGallon`, from 2 arguments.
@@ -109,7 +113,7 @@ class Car {
 
 const honda = new Car ("Honda", "20")
 
-console.log(honda)
+console.log(`Task 2`, honda)
 honda.fill(10)
 console.log(honda.drive(10))
 console.log(honda)
@@ -139,6 +143,13 @@ class Lambdasian {
   }
 }
 
+const whatsALambdasian = new Lambdasian ({
+  name: "JayMoney",
+  age: 20,
+  location: "Right over somewhere"
+}) 
+
+console.log(`Task 3`, whatsALambdasian)
 /*
   TASK 4
     - Write an Instructor class extending Lambdasian.
@@ -154,9 +165,34 @@ class Lambdasian {
         + `grade` receives a `student` object and a `subject` string as arguments and returns '{student.name} receives a perfect score on {subject}'
 */
 
-class Instructor {
+class Instructor extends Lambdasian{
+  constructor (props) {
+    super(props)
+    this.specialty = props.specialty
+    this.favLanguage = props.favLanguage
+    this.catchPhrase = props.catchPhrase
+  }
+
+  demo (subject) {
+    return `Today we are learning about ${subject}`
+  }
+
+  grade (student, subject) {
+    return `${student} recieves a perfect score on ${subject}`
+  }
 
 }
+
+const maryElephant = new Instructor ({
+  name: "Mary",
+  age: 80,
+  location: "Greenway",
+  specialty: "History",
+  favLanguage: "Spanish",
+  catchPhrase: "Settle down class"
+})
+
+console.log(`Task 4`, maryElephant)
 
 /*
   TASK 5
@@ -174,10 +210,38 @@ class Instructor {
         + `sprintChallenge` similar to PRAssignment but returns `student.name has begun sprint challenge on {subject}`
 */
 
-class Student {
-   
+class Student extends Lambdasian{
+   constructor (props) {
+    super(props)
+    this.previousBackground = props.previousBackground
+    this.className = props.className
+    this.favSubjects = props.favSubjects
+   }
+
+   listSubjects () {
+    return `Loving${this.favSubjects}`
+   }
+
+   PRAssignment (subject) {
+    return `${this.name} has submitted a PR for ${subject}`
+   }
+
+   sprintChallenge (subject) {
+    return `${this.name} has begun sprint challenge on ${subject}`
+   }
 }
 
+
+const collin = new Student ({
+  name: "Collin",
+  age: 20,
+  location: "USA",
+  previousBackground: "Store Clerk",
+  className: "2021",
+  favSubjects: [" Math", " Science", " Social Studies"]
+})
+
+console.log(`Task 5`, collin.listSubjects())
 /*
   TASK 6
     - Write a ProjectManager class extending Instructor.
