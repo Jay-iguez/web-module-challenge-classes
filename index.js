@@ -181,6 +181,16 @@ class Instructor extends Lambdasian{
     return `${student.name} recieves a perfect score on ${subject}`
   }
 
+  letterGrade (student) {
+    let randomGrade = Math.round(Math.random())
+    console.log(student.grade)
+    console.log(randomGrade)
+    if (randomGrade == 0) {
+      return student.grade = student.grade + (Math.random() / Math.random() + 1)
+    } else {
+      return student.grade = student.grade - (Math.random() / Math.random() + 1)
+    }
+  }
 }
 
 const maryElephant = new Instructor ({
@@ -210,9 +220,19 @@ console.log(`Task 4`, maryElephant)
         + `sprintChallenge` similar to PRAssignment but returns `student.name has begun sprint challenge on {subject}`
 */
 
+/*
+  STRETCH PROBLEM (no tests!)
+    - Extend the functionality of the Student by adding a prop called grade and setting it equal to a number between 1-100.
+    - Now that our students have a grade build out a method on the Instructor (this will be used by _BOTH_ instructors and PM's) that will randomly add or subtract points to a student's grade. _Math.random_ will help.
+    - Add a graduate method to a student.
+      + This method, when called, will check the grade of the student and see if they're ready to graduate from BloomTech
+      + If the student's grade is above a 70% let them graduate! Otherwise go back to grading their assignments to increase their score.
+*/
+
 class Student extends Lambdasian{
    constructor (props) {
     super(props)
+    this.grade = props.grade
     this.previousBackground = props.previousBackground
     this.className = props.className
     this.favSubjects = props.favSubjects
@@ -229,6 +249,14 @@ class Student extends Lambdasian{
    sprintChallenge (subject) {
     return `${this.name} has begun sprint challenge on ${subject}`
    }
+
+   graduate () {
+    if (this.grade >= 70) {
+      return `${this.name} is ready to graduate!`
+    } else {
+      return `Keep grading their assignments, they need to learn more.`
+    }
+   }
 }
 
 
@@ -236,12 +264,15 @@ const collin = new Student ({
   name: "Collin",
   age: 20,
   location: "USA",
+  grade: 40,
   previousBackground: "Store Clerk",
   className: "2021",
   favSubjects: [" Math", " Science", " Social Studies"]
 })
 
 console.log(`Task 5`, collin.listSubjects())
+maryElephant.letterGrade(collin)
+console.log(collin)
 /*
   TASK 6
     - Write a ProjectManager class extending Instructor.
